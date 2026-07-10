@@ -2,40 +2,34 @@ const mongoose = require('mongoose');
 
 const commissionSchema = new mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: [true, 'Please add a name'],
-    },
-    email: {
-      type: String,
-      required: [true, 'Please add an email'],
-      match: [
-        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-        'Please add a valid email',
-      ],
-    },
-    packageType: {
-      type: String,
-      required: [true, 'Please select a package type'],
-      enum: ['Custom Portraits', 'Pet & Wildlife', 'Botanical & Nature', 'Other'],
-    },
-    size: {
-      type: String,
-      default: 'Not sure yet',
-    },
-    description: {
-      type: String,
-      required: [true, 'Please add a description of your request'],
-    },
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    phone: { type: String },
+    country: { type: String },
+    
+    artworkType: { type: String, required: true },
+    preferredSize: { type: String },
+    budgetRange: { type: String },
+    frameRequired: { type: Boolean, default: false },
+    preferredDeadline: { type: String },
+    
+    description: { type: String, required: true },
+    
+    // Images
+    referenceImages: [
+      {
+        url: { type: String },
+        public_id: { type: String },
+      }
+    ],
+
     status: {
       type: String,
-      enum: ['Pending', 'Reviewed', 'Accepted', 'Completed', 'Declined'],
-      default: 'Pending',
+      enum: ['New', 'Reviewing', 'Quote Sent', 'Accepted', 'In Progress', 'Completed', 'Rejected'],
+      default: 'New',
     },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
 module.exports = mongoose.model('Commission', commissionSchema);

@@ -16,7 +16,14 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
+app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/commissions', require('./routes/commissionRoutes'));
+app.use('/api/artworks', require('./routes/artworkRoutes'));
+app.use('/api/categories', require('./routes/categoryRoutes'));
+app.use('/api/orders', require('./routes/orderRoutes'));
+app.use('/api/messages', require('./routes/messageRoutes'));
+app.use('/api/settings', require('./routes/settingRoutes'));
+app.use('/api/upload', require('./routes/uploadRoutes'));
 
 // Basic route
 app.get('/', (req, res) => {
