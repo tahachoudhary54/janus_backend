@@ -17,8 +17,10 @@ const orderSchema = new mongoose.Schema(
     postalCode: { type: String, required: true },
     
     // Financials
-    amount: { type: Number, required: true },
-    currency: { type: String, default: 'USD' },
+    subtotal: { type: Number, required: true },
+    shippingCost: { type: Number, required: true, default: 0 },
+    amount: { type: Number, required: true }, // Total amount
+    currency: { type: String, default: 'INR' },
     
     // Statuses
     paymentStatus: { type: String, enum: ['Pending', 'Paid', 'Failed'], default: 'Pending' },

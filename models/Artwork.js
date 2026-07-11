@@ -4,7 +4,7 @@ const artworkSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
     slug: { type: String, required: true, unique: true },
-    category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
+    category: { type: String, required: true },
     shortDescription: { type: String },
     fullDescription: { type: String },
     story: { type: String },

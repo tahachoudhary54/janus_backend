@@ -18,6 +18,8 @@ const createOrder = async (req, res) => {
       frameOption, 
       giftWrap, 
       specialInstructions, 
+      subtotal,
+      shippingCost,
       amount 
     } = req.body;
 
@@ -56,6 +58,8 @@ const createOrder = async (req, res) => {
       shippingAddress: customerData.shippingAddress,
       country: customerData.country,
       postalCode: customerData.postalCode,
+      subtotal,
+      shippingCost,
       amount,
       paymentStatus: 'Paid', // MOCK payment success as requested
       orderStatus: 'Processing'
@@ -71,7 +75,9 @@ const createOrder = async (req, res) => {
         <h1 style="font-family: serif; font-size: 24px; font-weight: normal; margin-bottom: 24px;">Thank you for your order, ${customer.name}.</h1>
         <p>Your order for <strong>${artwork.title}</strong> has been received and is being prepared.</p>
         <p><strong>Order Number:</strong> ${orderNumber}</p>
-        <p><strong>Total Amount:</strong> $${amount}</p>
+        <p><strong>Subtotal:</strong> ₹${subtotal}</p>
+        <p><strong>Shipping Cost:</strong> ₹${shippingCost}</p>
+        <p><strong>Total Amount:</strong> ₹${amount}</p>
         <p><strong>Shipping To:</strong> ${customerData.shippingAddress}</p>
         <br/>
         <p>Janus Gomes</p>

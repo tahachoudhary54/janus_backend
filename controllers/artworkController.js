@@ -3,7 +3,7 @@ const { cloudinary } = require('../middleware/uploadMiddleware');
 
 const getArtworks = async (req, res) => {
   try {
-    const artworks = await Artwork.find().populate('category');
+    const artworks = await Artwork.find();
     res.status(200).json(artworks);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -12,7 +12,7 @@ const getArtworks = async (req, res) => {
 
 const getArtworkById = async (req, res) => {
   try {
-    const artwork = await Artwork.findById(req.params.id).populate('category');
+    const artwork = await Artwork.findById(req.params.id);
     if (!artwork) return res.status(404).json({ message: 'Artwork not found' });
     res.status(200).json(artwork);
   } catch (error) {
